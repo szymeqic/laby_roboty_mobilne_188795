@@ -6,8 +6,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.12397902719426883 -0.848723929832387 -0.5140981343535806 5.729471251065769
-  position -8.067482192181691 -3.2433350051957337 4.7181491836102305
+  orientation 0.014149135007058515 0.013817367385220438 -0.9998044220431782 1.5945169624326243
+  position 0.24943439395396866 1.9068013462558133 0.07146919254502461
 }
 TexturedBackground {
 }
@@ -17,11 +17,177 @@ Solid {
   children [
     DEF PODLOGA Shape {
       appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/plansza.jpg"
+            ""
+            ""
+          ]
+        }
       }
       geometry Box {
         size 5 5 0.1
       }
     }
   ]
+  name "podloga"
   boundingObject USE PODLOGA
+}
+Robot {
+  translation 0.27 1.76 0.1
+  children [
+    Pose {
+      translation -0.04 0 -0.3
+      children [
+        PointLight {
+          attenuation 0 0 1
+          location 0 0.3 0
+        }
+        SpotLight {
+          attenuation 0 0 1
+          beamWidth 0.7
+          direction 1 0 0
+        }
+      ]
+    }
+    LightSensor {
+      translation -0.03 0 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        DEF CZUJKA Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "czujka prawo"
+      boundingObject USE CZUJKA
+    }
+    LightSensor {
+      translation 0.03 0 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        USE CZUJKA
+      ]
+      name "czujka lewo"
+      boundingObject USE CZUJKA
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 -0.04 -0.018
+      }
+      device [
+        PositionSensor {
+          name "enkoder1"
+        }
+        RotationalMotor {
+          name "kolo1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 -0.04 -0.018
+        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        children [
+          DEF KOLO_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo2"
+        }
+        PositionSensor {
+          name "enkoder2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0.04 -0.018
+        rotation 0 1 0 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 -0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo3"
+        }
+        PositionSensor {
+          name "enkoder3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 -0.04 -0.018
+        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo4"
+        }
+        PositionSensor {
+          name "enkoder4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0.04 -0.018
+        rotation 0 1 0 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    DEF KORPUS Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Box {
+        size 0.08 0.13 0.05
+      }
+    }
+  ]
+  name "linefollower"
+  boundingObject USE KORPUS
+  physics Physics {
+  }
 }
