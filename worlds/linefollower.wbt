@@ -6,8 +6,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.014149135007058515 0.013817367385220438 -0.9998044220431782 1.5945169624326243
-  position 0.24943439395396866 1.9068013462558133 0.07146919254502461
+  orientation 0.4015602347483979 0.21283920803152737 -0.8907574582305353 2.259379595007736
+  position 0.8067720847317604 1.8904096068329643 1.1049213964440543
 }
 TexturedBackground {
 }
@@ -34,26 +34,20 @@ Solid {
   boundingObject USE PODLOGA
 }
 Robot {
-  translation 0.27 1.76 0.1
+  translation 1.2 -0.15 0.1
   children [
-    Pose {
-      translation -0.04 0 -0.3
-      children [
-        PointLight {
-          attenuation 0 0 1
-          location 0 0.3 0
-        }
-        SpotLight {
-          attenuation 0 0 1
-          beamWidth 0.7
-          direction 1 0 0
-        }
-      ]
-    }
     LightSensor {
-      translation -0.03 0 -0.027
+      translation -0.02 -0.05 -0.027
       rotation 0 1 0 1.5708
       children [
+        DistanceSensor {
+          name "czujkaIRprawo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
         DEF CZUJKA Shape {
           appearance PBRAppearance {
           }
@@ -64,15 +58,31 @@ Robot {
       ]
       name "czujka prawo"
       boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
     }
     LightSensor {
-      translation 0.03 0 -0.027
+      translation 0.02 -0.05 -0.027
       rotation 0 1 0 1.5708
       children [
+        DEF CZUJKA_1 DistanceSensor {
+          name "czujkaIRlewo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
         USE CZUJKA
       ]
       name "czujka lewo"
       boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
     }
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -88,7 +98,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.045 -0.04 -0.018
-        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        rotation 1.5289890491878233e-10 -0.9999999999999999 -1.528987490207979e-10 1.5707953071795862
         children [
           DEF KOLO_SHAPE Shape {
             appearance PBRAppearance {
@@ -119,7 +129,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.045 0.04 -0.018
-        rotation 0 1 0 1.5708
+        rotation -3.2565044611037197e-10 1 -3.256516422934506e-10 1.5708
         children [
           USE KOLO_SHAPE
         ]
@@ -143,7 +153,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.045 -0.04 -0.018
-        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        rotation 3.6913847911789473e-10 -0.9999999999999999 -3.6913810273884096e-10 1.5707953071795862
         children [
           USE KOLO_SHAPE
         ]
@@ -167,7 +177,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.045 0.04 -0.018
-        rotation 0 1 0 1.5708
+        rotation -6.937425785033612e-10 1 -6.937451267668192e-10 1.5708
         children [
           USE KOLO_SHAPE
         ]
@@ -190,4 +200,345 @@ Robot {
   boundingObject USE KORPUS
   physics Physics {
   }
+  controller "linefollower"
+}
+Robot {
+  translation 0.26598 -0.165 0.1
+  rotation 0 0 1 -0.523595307179586
+  children [
+    LightSensor {
+      translation -0.02 -0.05 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        DistanceSensor {
+          name "czujkaIRprawo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
+        DEF CZUJKA Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "czujka prawo"
+      boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
+    }
+    LightSensor {
+      translation 0.02 -0.05 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        DEF CZUJKA_1 DistanceSensor {
+          name "czujkaIRlewo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
+        USE CZUJKA
+      ]
+      name "czujka lewo"
+      boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 -0.04 -0.018
+      }
+      device [
+        PositionSensor {
+          name "enkoder1"
+        }
+        RotationalMotor {
+          name "kolo1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 -0.04 -0.018
+        rotation 1.5289890491878233e-10 -0.9999999999999999 -1.528987490207979e-10 1.5707953071795862
+        children [
+          DEF KOLO_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo2"
+        }
+        PositionSensor {
+          name "enkoder2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0.04 -0.018
+        rotation -3.2565044611037197e-10 1 -3.256516422934506e-10 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 -0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo3"
+        }
+        PositionSensor {
+          name "enkoder3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 -0.04 -0.018
+        rotation 3.6913847911789473e-10 -0.9999999999999999 -3.6913810273884096e-10 1.5707953071795862
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo4"
+        }
+        PositionSensor {
+          name "enkoder4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0.04 -0.018
+        rotation -6.937425785033612e-10 1 -6.937451267668192e-10 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    DEF KORPUS Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Box {
+        size 0.08 0.13 0.05
+      }
+    }
+  ]
+  name "linefollower_simulacrum"
+  boundingObject USE KORPUS
+  physics Physics {
+  }
+  controller "linefollower"
+}
+Robot {
+  translation 0.51098 1.07609 0.1
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    LightSensor {
+      translation -0.02 -0.05 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        DistanceSensor {
+          name "czujkaIRprawo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
+        DEF CZUJKA Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "czujka prawo"
+      boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
+    }
+    LightSensor {
+      translation 0.02 -0.05 -0.027
+      rotation 0 1 0 1.5708
+      children [
+        DEF CZUJKA_1 DistanceSensor {
+          name "czujkaIRlewo"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+          type "infra-red"
+        }
+        USE CZUJKA
+      ]
+      name "czujka lewo"
+      boundingObject USE CZUJKA
+      lookupTable [
+        0 0 0
+        10 1000 0
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 -0.04 -0.018
+      }
+      device [
+        PositionSensor {
+          name "enkoder1"
+        }
+        RotationalMotor {
+          name "kolo1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 -0.04 -0.018
+        rotation 1.5289890491878233e-10 -0.9999999999999999 -1.528987490207979e-10 1.5707953071795862
+        children [
+          DEF KOLO_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo2"
+        }
+        PositionSensor {
+          name "enkoder2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0.04 -0.018
+        rotation -3.2565044611037197e-10 1 -3.256516422934506e-10 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 -0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo3"
+        }
+        PositionSensor {
+          name "enkoder3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 -0.04 -0.018
+        rotation 3.6913847911789473e-10 -0.9999999999999999 -3.6913810273884096e-10 1.5707953071795862
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0.04 -0.018
+      }
+      device [
+        RotationalMotor {
+          name "kolo4"
+        }
+        PositionSensor {
+          name "enkoder4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0.04 -0.018
+        rotation -6.937425785033612e-10 1 -6.937451267668192e-10 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_SHAPE
+        physics Physics {
+        }
+      }
+    }
+    DEF KORPUS Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Box {
+        size 0.08 0.13 0.05
+      }
+    }
+  ]
+  name "linefollower_simulacrum(1)"
+  boundingObject USE KORPUS
+  physics Physics {
+  }
+  controller "linefollower"
 }
