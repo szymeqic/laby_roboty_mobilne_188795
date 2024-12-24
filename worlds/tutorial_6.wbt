@@ -1,0 +1,282 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "../protos/robottutorial.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "tarcie_cylinder"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.13732916893779426 -0.9705409770814439 -0.19796694462624473 5.287862743727499
+  position -0.7719168421327789 -0.22688390680663575 1.5643436866435299
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  translation 0 -0.7 0
+  size 3 3
+}
+WoodenBox {
+  translation -0.117768 -1.03 0.097017
+  rotation 0 0 1 0.785398
+  name "wooden box(1)"
+  size 0.1 0.3 0.2
+}
+WoodenBox {
+  translation 0.392232 -0.3 0.097017
+  rotation 0 1 0 0
+  size 0.1 0.2 0.2
+}
+WoodenBox {
+  translation -0.297768 -0.69 0.097017
+  rotation 0 0 1 0.523599
+  name "wooden box(2)"
+  size 0.1 0.1 0.3
+}
+WoodenBox {
+  translation -0.177768 -0.41 0.027017
+  rotation 0 1 0 0
+  name "wooden box(3)"
+  size 0.25 0.25 0.05
+}
+Solid {
+  translation 0 0.36 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "sciana"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 0 -1.54 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "snia"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation -1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE MUR_KSZTAŁT
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 2
+  location 1 -1.4 0.6
+  castShadows TRUE
+}
+Robot {
+  translation 0.411 0 0.07
+  children [
+    DEF SENSOR_R DistanceSensor {
+      translation -0.03 -0.16 0
+      rotation 0 0 1 -2.094395307179586
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "SENSOR_R"
+    }
+    DEF SENSOR_L DistanceSensor {
+      translation 0.0488041 -0.153045 0
+      rotation 0 0 -1 1.309
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "SENSOR_L"
+    }
+    DEF KORPUS Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_2.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 0.2 0.3 0.1
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.11 -0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO1"
+        }
+      ]
+      endPoint DEF KOLO1 Solid {
+        translation -0.11 -0.1 0
+        rotation 0 1 0 1.5708
+        children [
+          DEF KOLO_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.07
+            }
+          }
+        ]
+        boundingObject USE KOLO_SHAPE
+        physics DEF KOLO_FIZ Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.11 0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO2"
+        }
+      ]
+      endPoint DEF KOLO2 Solid {
+        translation -0.11 0.1 0
+        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.11 -0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO3"
+        }
+      ]
+      endPoint DEF KOLO3 Solid {
+        translation 0.11 -0.1 0
+        rotation 2.346409999987081e-06 0.9999999999944944 2.346409999987081e-06 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.11 0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO4"
+        }
+      ]
+      endPoint DEF KOLO4 Solid {
+        translation 0.11 0.1 0
+        rotation 0 1 0 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+  ]
+  name "robocik"
+  boundingObject USE KORPUS
+  physics Physics {
+  }
+  translationStep 0.001
+  controller "tutorial_6"
+}
+robottutorial {
+  translation 0 0 0.117
+}

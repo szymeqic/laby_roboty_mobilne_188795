@@ -1,0 +1,221 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "tarcie_cylinder"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.2072742295734513 -0.21708903177025501 0.9538918943149612 4.585655612790687
+  position 0.10291039325453327 1.8249343095564425 1.5778205608570672
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  translation 0 -0.7 0
+  size 3 3
+}
+WoodenBox {
+  translation -0.117768 -1.03 0.097017
+  rotation 0 0 1 0.785398
+  name "wooden box(1)"
+  size 0.1 0.3 0.2
+}
+WoodenBox {
+  translation 0.392232 -0.3 0.097017
+  rotation 0 1 0 0
+  size 0.1 0.2 0.2
+}
+WoodenBox {
+  translation -0.297768 -0.69 0.097017
+  rotation 0 0 1 0.523599
+  name "wooden box(2)"
+  size 0.1 0.1 0.3
+}
+WoodenBox {
+  translation -0.177768 -0.41 0.027017
+  rotation 0 1 0 0
+  name "wooden box(3)"
+  size 0.25 0.25 0.05
+}
+E-puck {
+  translation 0 -0.69 0
+  controller "EPuckAntyKolizja"
+}
+Solid {
+  translation 0.4 -0.69 0.18
+  children [
+    DEF KULA_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_2.jpg"
+          ]
+        }
+      }
+      geometry DEF KULA_GEO Sphere {
+        radius 0.06
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE KULA_GEO
+  physics Physics {
+  }
+  recognitionColors [
+    0 0 0
+    0 0 0
+    0 0 0
+    0 0 0
+  ]
+}
+Solid {
+  translation 0 -1.06 0.31
+  children [
+    USE KULA_KSZTAŁT
+  ]
+  name "solid(1)"
+  boundingObject USE KULA_KSZTAŁT
+  physics Physics {
+  }
+}
+Solid {
+  translation 0 0.36 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 0 -1.54 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation -1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE MUR_KSZTAŁT
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 2
+  location 1 -1.4 0.6
+  castShadows TRUE
+}
+Solid {
+  translation 0 0 0.66
+  rotation 0 1 0 -0.261795307179586
+  children [
+    DEF GRUPA_1 Group {
+      children [
+        Pose {
+          translation 0 0 -0.3
+          children [
+            USE KULA_KSZTAŁT
+          ]
+        }
+        Pose {
+          translation 0 0 0.27
+          children [
+            USE KULA_KSZTAŁT
+          ]
+        }
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Cylinder {
+            height 0.5
+            radius 0.02
+          }
+        }
+      ]
+    }
+  ]
+  name "kompozyt"
+  contactMaterial "tarcie_cylinder"
+  boundingObject USE GRUPA_1
+  physics Physics {
+    density -1
+    mass 2
+    centerOfMass [
+      0 0 0.05
+    ]
+  }
+}

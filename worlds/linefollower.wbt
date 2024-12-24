@@ -1,0 +1,27 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.12397902719426883 -0.848723929832387 -0.5140981343535806 5.729471251065769
+  position -8.067482192181691 -3.2433350051957337 4.7181491836102305
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Solid {
+  children [
+    DEF PODLOGA Shape {
+      appearance Appearance {
+      }
+      geometry Box {
+        size 5 5 0.1
+      }
+    }
+  ]
+  boundingObject USE PODLOGA
+}

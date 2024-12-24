@@ -1,0 +1,8 @@
+﻿E:\instalki\Visual studio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(541,5): warning MSB8029: Katalog pośredni ani katalog danych wyjściowych nie mogą znajdować się w katalogu tymczasowym, ponieważ może to spowodować problemy z kompilacją przyrostową.
+  tutorial_6.cpp
+  Trwa generowanie kodu
+  1 of 483 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  tutorial_6.vcxproj -> E:\laby_roboty_mobilne\controllers\tutorial_6\tutorial_6.exe

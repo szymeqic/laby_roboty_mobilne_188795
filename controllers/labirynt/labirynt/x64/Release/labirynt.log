@@ -1,0 +1,11 @@
+﻿  labirynt.cpp
+E:\laby_roboty_mobilne\controllers\labirynt\labirynt.cpp(225,3): warning C4804: "*=": niebezpieczne użycie typu "bool" w operacji
+E:\laby_roboty_mobilne\controllers\labirynt\labirynt.cpp(227,2): warning C4804: "+=": niebezpieczne użycie typu "bool" w operacji
+E:\laby_roboty_mobilne\controllers\labirynt\labirynt.cpp(430,15): warning C4244: "=": konwersja z "float" do "unsigned int", możliwa utrata danych
+E:\laby_roboty_mobilne\controllers\labirynt\labirynt.cpp(474,4): warning C4804: "+=": niebezpieczne użycie typu "bool" w operacji
+  Trwa generowanie kodu
+  1 of 502 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  labirynt.vcxproj -> E:\laby_roboty_mobilne\controllers\labirynt\labirynt.exe

@@ -1,0 +1,149 @@
+#VRML_SIM R2023b utf8
+PROTO robottutorial[
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 0 1 0
+  field SFFloat    bodyMass     1
+]
+{
+  Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    DEF SENSOR_R DistanceSensor {
+      translation -0.03 -0.16 0
+      rotation 0 0 1 -2.094395307179586
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "SENSOR_R"
+    }
+    DEF SENSOR_L DistanceSensor {
+      translation 0.0488041 -0.153045 0
+      rotation 0 0 -1 1.309
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "SENSOR_L"
+    }
+    DEF KORPUS Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_2.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 0.2 0.3 0.1
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.11 -0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO1"
+        }
+      ]
+      endPoint DEF KOLO1 Solid {
+        translation -0.11 -0.1 0
+        rotation 0 1 0 1.5708
+        children [
+          DEF KOLO_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.07
+            }
+          }
+        ]
+        boundingObject USE KOLO_SHAPE
+        physics DEF KOLO_FIZ Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.11 0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO2"
+        }
+      ]
+      endPoint DEF KOLO2 Solid {
+        translation -0.11 0.1 0
+        rotation 0 -0.9999999999999999 0 1.5707953071795862
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.11 -0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO3"
+        }
+      ]
+      endPoint DEF KOLO3 Solid {
+        translation 0.11 -0.1 0
+        rotation 2.346409999987081e-06 0.9999999999944944 2.346409999987081e-06 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.11 0.1 0
+      }
+      device [
+        RotationalMotor {
+          name "KOLO4"
+        }
+      ]
+      endPoint DEF KOLO4 Solid {
+        translation 0.11 0.1 0
+        rotation 0 1 0 1.5708
+        children [
+          USE KOLO_SHAPE
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_SHAPE
+        physics USE KOLO_FIZ
+      }
+    }
+  ]
+  boundingObject USE KORPUS
+  physics Physics {
+  }
+  translationStep 0.001
+  controller "tutorial_6"
+}
+}

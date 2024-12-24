@@ -1,0 +1,42 @@
+﻿E:\instalki\Visual studio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(541,5): warning MSB8029: Katalog pośredni ani katalog danych wyjściowych nie mogą znajdować się w katalogu tymczasowym, ponieważ może to spowodować problemy z kompilacją przyrostową.
+  Accelerometer.cpp
+  Altimeter.cpp
+  Brake.cpp
+  Camera.cpp
+  Compass.cpp
+  Connector.cpp
+  Device.cpp
+  Display.cpp
+  DistanceSensor.cpp
+  Emitter.cpp
+  Field.cpp
+  GPS.cpp
+  Gyro.cpp
+  InertialUnit.cpp
+  Joystick.cpp
+  Keyboard.cpp
+  LED.cpp
+  Lidar.cpp
+  LightSensor.cpp
+  Motion.cpp
+  Trwa kompilowanie...
+  Motor.cpp
+  Mouse.cpp
+  Node.cpp
+  Pen.cpp
+  PositionSensor.cpp
+  Radar.cpp
+  RangeFinder.cpp
+  Receiver.cpp
+  Robot.cpp
+  Skin.cpp
+  Speaker.cpp
+  Supervisor.cpp
+  TouchSensor.cpp
+  VacuumGripper.cpp
+  EPuckAntyKolizja.cpp
+  Trwa generowanie kodu
+  Previous IPDB not found, fall back to full compilation.
+  All 483 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  EPuckAntyKolizja.vcxproj -> E:\laby_roboty_mobilne\controllers\EPuckAntyKolizja\EPuckAntyKolizja.exe

@@ -1,0 +1,162 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.45388542937888376 0.37377844408252553 -0.8088743361838058 2.03243202892422
+  position 0.5423875933014322 1.0538302380615312 3.0770708297896974
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  translation 0 -0.7 0
+  size 3 3
+}
+WoodenBox {
+  translation -0.117768 -1.03 0.097017
+  rotation 0 0 1 0.785398
+  name "wooden box(1)"
+  size 0.1 0.3 0.2
+}
+WoodenBox {
+  translation 0.392232 -0.3 0.097017
+  rotation 0 1 0 0
+  size 0.1 0.2 0.2
+}
+WoodenBox {
+  translation -0.297768 -0.69 0.097017
+  rotation 0 0 1 0.523599
+  name "wooden box(2)"
+  size 0.1 0.1 0.3
+}
+WoodenBox {
+  translation -0.177768 -0.41 0.027017
+  rotation 0 1 0 0
+  name "wooden box(3)"
+  size 0.25 0.25 0.05
+}
+E-puck {
+  translation 0 -0.69 0
+  controller "tutorial_1_kontroler"
+}
+Solid {
+  translation 0.4 -0.69 0.18
+  children [
+    DEF KULA_KSZTAŁT Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF KULA_GEO Sphere {
+        radius 0.06
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE KULA_GEO
+  physics Physics {
+  }
+  recognitionColors [
+    0 0 0
+    0 0 0
+    0 0 0
+    0 0 0
+  ]
+}
+Solid {
+  translation 0 -1.06 0.31
+  children [
+    USE KULA_KSZTAŁT
+  ]
+  name "solid(1)"
+  boundingObject USE KULA_KSZTAŁT
+  physics Physics {
+  }
+}
+Solid {
+  translation 0 0.36 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 0 -1.54 0.15
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation -1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE MUR_KSZTAŁT
+}
+Solid {
+  translation 1.05 -0.59 0.15
+  rotation 0 0 1 1.5708
+  children [
+    DEF MUR_KSZTAŁT Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/tekstura_1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 2 0.1 0.3
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE MUR_KSZTAŁT
+}

@@ -1,0 +1,253 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/CircleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.4879005197709809 0.48740925515758765 0.7241445303210764 1.8890609512982848
+  position -0.09013814020012927 -6.167641226624312 15.91742712080014
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Solid {
+  translation 0.53 1.25 0.2
+  children [
+    DEF PUDLO Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 1
+      }
+      geometry Box {
+        size 0.4 0.4 0.4
+      }
+    }
+  ]
+  name "pudlo1"
+  boundingObject USE PUDLO
+  physics DEF PUDLO_FIZ Physics {
+    density 200
+  }
+}
+Robot {
+  translation 0 0 0.21
+  children [
+    Lidar {
+      translation 0 0 0.11
+      rotation 0 0 1 3.141592653589793
+      children [
+        DEF LIDAR_KSZTALT Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+          }
+          geometry Cone {
+            bottomRadius 0.1
+            height 0.1
+          }
+        }
+      ]
+      boundingObject Cylinder {
+        height 0.2
+        radius 0.1
+      }
+      rotationStep 0.1
+      horizontalResolution 1024
+      fieldOfView 6.28
+      numberOfLayers 1
+      maxRange 6
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor 0.15 0.225 -0.08
+      }
+      device [
+        RotationalMotor {
+          name "kolo1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.15004993827833182 0.2250021020240305 -0.07937344551652141
+        rotation 0.9999999999996999 -5.444486284394046e-07 -5.511819465865507e-07 1.570799593371631
+        children [
+          DEF KOLO_KSZTAŁT Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 1
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.1
+            }
+          }
+        ]
+        boundingObject USE KOLO_KSZTAŁT
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor -0.15 0.225 -0.08
+      }
+      device [
+        RotationalMotor {
+          name "kolo2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.1499493547705135 0.22499883276082977 -0.0793734878066564
+        rotation -0.999999999999661 -5.788479648055749e-07 5.855429897223854e-07 1.5707955549309265
+        children [
+          USE KOLO_KSZTAŁT
+        ]
+        name "solid(1)"
+        boundingObject USE KOLO_KSZTAŁT
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor 0.15 -0.225 -0.08
+      }
+      device [
+        RotationalMotor {
+          name "kolo3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.14994934944924482 -0.22499883265098855 -0.07937348218611495
+        rotation 0.9999999999996615 5.785261923816538e-07 5.852175752803535e-07 1.5708002480521868
+        children [
+          USE KOLO_KSZTAŁT
+        ]
+        name "solid(2)"
+        boundingObject USE KOLO_KSZTAŁT
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor -0.15 -0.225 -0.08
+      }
+      device [
+        RotationalMotor {
+          name "kolo4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.15004994358319962 -0.22500210191396558 -0.07937343988022745
+        rotation 0.9999999999997002 -5.508382636438089e-07 -5.441017460974935e-07 1.570800406937747
+        children [
+          USE KOLO_KSZTAŁT
+        ]
+        name "solid(3)"
+        boundingObject USE KOLO_KSZTAŁT
+        physics Physics {
+        }
+      }
+    }
+    DEF KORPUS_ROBO Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../tekstury/mozaika1.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 0.8 0.4 0.15
+      }
+    }
+  ]
+  name "robot2"
+  boundingObject USE KORPUS_ROBO
+  physics Physics {
+  }
+  controller "zrzut2"
+}
+Solid {
+  translation -0.87 0.35 0.21
+  children [
+    USE PUDLO
+  ]
+  name "pudlo2"
+  boundingObject USE PUDLO
+  physics USE PUDLO_FIZ
+}
+Solid {
+  translation 0.53 -1.66 0.3
+  children [
+    DEF PUDLO Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 1
+      }
+      geometry Box {
+        size 0.4 0.4 0.4
+      }
+    }
+  ]
+  name "pudlo1(1)"
+  boundingObject USE PUDLO
+  physics DEF PUDLO_FIZ Physics {
+    density 50
+  }
+}
+Solid {
+  translation 1.44 -0.45 0.29
+  children [
+    DEF PUDLO Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 1
+      }
+      geometry Box {
+        size 0.4 0.4 0.3
+      }
+    }
+  ]
+  name "pudlo1(2)"
+  boundingObject USE PUDLO
+  physics DEF PUDLO_FIZ Physics {
+    density 200
+  }
+}
+Solid {
+  children [
+    DEF PODLOGA Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 4 4 0.05
+      }
+    }
+  ]
+  name "PODŁOGA"
+  boundingObject USE PODLOGA
+}
+CircleArena {
+  radius 4
+}
+Solid {
+  translation -0.34 -0.99 0.21
+  name "pudlo2(2)"
+  boundingObject USE PUDLO
+  physics USE PUDLO_FIZ
+}
+Solid {
+  translation -1.58 -1.08 0.21
+  children [
+    USE PUDLO
+  ]
+  name "pudlo2(1)"
+  boundingObject USE PUDLO
+  physics USE PUDLO_FIZ
+}
