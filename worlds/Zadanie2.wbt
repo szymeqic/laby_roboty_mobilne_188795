@@ -233,9 +233,7 @@ Solid {
   name "PODŁOGA"
   boundingObject USE PODLOGA
 }
-CircleArena {
-  radius 4
-}
+
 Solid {
   translation -0.34 -0.99 0.21
   name "pudlo2(2)"
